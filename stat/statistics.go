@@ -18,7 +18,7 @@ type Cell struct {
 type CellSlice []*Cell
 
 var sentence string
-var threshold = int32(2)
+var threshold = int32(4)
 var filter []string = []string{
 	"的", "在", "和", "了", "也", "上", "还", "是", "年", "有", "，", "。", " ", "都", "而", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
 }
@@ -125,17 +125,17 @@ func Search(cells CellSlice, segs []string) {
 		reg := regexp.MustCompile(`^.*。`)
 		ins := reg.FindAllString(sentence[flags[i]:], -1)
 		for _, in := range ins {
-			// fmt.Printf("%v\n", in)
 			if resContains(result, in) {
 				continue
 			}
-			if strings.Count(in, "。") > 3 {
+			if strings.Count(in, "。") > 2 {
 				continue
 			}
+			fmt.Printf("%v\n", in)
 			result = append(result, in)
 		}
 	}
-	fmt.Printf("%v\n", result)
+	// fmt.Printf("%v\n", result)
 }
 
 func resContains(result []string, in string) bool {
