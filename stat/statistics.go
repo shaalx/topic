@@ -132,6 +132,7 @@ func Search(cells CellSlice, segs []string) {
 
 	sort.Ints(flags)
 	// fmt.Println(flags)
+	count := 0
 	for i := 0; i < len(flags); i++ {
 		// fmt.Println(segs[flags[i]:flags[i+1]])
 		// 查找行首以 H 开头，以。结尾的字符串
@@ -146,6 +147,10 @@ func Search(cells CellSlice, segs []string) {
 			}
 			fmt.Printf("%v\n", in)
 			result = append(result, in)
+			if count > 5 {
+				continue
+			}
+			count++
 		}
 	}
 	// fmt.Printf("%v\n", result)
