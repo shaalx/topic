@@ -2,6 +2,7 @@ package seg
 
 import (
 	"io/ioutil"
+	"net/http"
 )
 
 func ReadAll(filename string) string {
@@ -10,4 +11,16 @@ func ReadAll(filename string) string {
 		return ""
 	}
 	return string(b)
+}
+
+func ReadHttp(url string) string {
+	resp, err := http.Get(url)
+	if nil != err {
+		return ""
+	}
+	bs, err := ioutil.ReadAll(resp.Body)
+	if nil != err {
+		return ""
+	}
+	return string(bs)
 }

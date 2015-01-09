@@ -25,7 +25,10 @@ var filter []string = []string{
 
 func init() {
 	seg.SetDictionary("dict.txt") // 设定字典
-	sentence = seg.ReadAll("file.txt")
+	// sentence = seg.ReadAll("file.txt")
+	// sentence = seg.ReadHttp("http://www.cyzone.cn/a/20150109/268194.html")
+	sentence = seg.ReadHttp("http://www.36kr.com/p/218585.html")
+	// fmt.Println(sentence)
 }
 
 func Stating() (Stats, []string) {
@@ -50,6 +53,16 @@ func (s Stats) Map2Slice() CellSlice {
 			continue
 		}
 		if "\n\t" == k {
+			continue
+		}
+		// 排除单个汉字 或 非汉字
+		if 3 >= len(k) {
+			continue
+		}
+		// 非汉字
+		rege := regexp.MustCompile(`[\P{Han}]+`)
+		index := rege.FindIndex([]byte(k))
+		if 0 < len(index) {
 			continue
 		}
 		r := []rune(k)
