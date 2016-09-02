@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "github.com/shaalx/topic/stat"
+	. "github.com/toukii/topic/stat"
 )
 
 func main() {

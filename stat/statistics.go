@@ -2,7 +2,7 @@ package stat
 
 import (
 	"fmt"
-	"github.com/shaalx/topic/seg"
+	"github.com/toukii/topic/seg"
 	"regexp"
 	"sort"
 	"strings"
